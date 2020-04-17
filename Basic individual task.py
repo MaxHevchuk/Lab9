@@ -78,49 +78,55 @@ def insertionSort(arr):
         return None, counter_if, counter_replace
 
 
-# користувач обирає як створити масив чисел
-key = input('F - згенерувати рандомні числа;\n'
-            'T - ввести власноруч до 30 чисел;\n>>> ')
-if key == 'F':
-    # логічний ключ чи обрав користувач вводити свій масив, чи наповнити рандомно
-    choise = False
+while True:
 
-    # створення масиву з рандомними числами в діапазоні [0, 100], розміром, який введе сам користувач
-    array = list(randint(low=1, high=1000, size=int(input('Введіть розмір масиву: '))))
-else:
-    choise = True
+    # користувач обирає як створити масив чисел
+    key = input('F - згенерувати рандомні числа;\n'
+                'T - ввести власноруч до 30 чисел;\n>>> ')
+    if key == 'F':
+        # логічний ключ чи обрав користувач вводити свій масив, чи наповнити рандомно
+        choise = False
 
-    # якщо розмір введеного масиву користувачем буде більшим 30, то він буде вводити доки не буде <= 30
-    while True:
-        array = list(map(int, input('Введіть до 30 чисел через пробіл:\n').split()))
-        if len(array) <= 30:  #
-            break
+        # створення масиву з рандомними числами в діапазоні [0, 100], розміром, який введе сам користувач
+        array = list(randint(low=1, high=1000, size=int(input('Введіть розмір масиву: '))))
+    else:
+        choise = True
 
-# створюються глибокі копії основного масиву
-array1, array2, array3 = deepcopy(array), deepcopy(array), deepcopy(array)
+        # якщо розмір введеного масиву користувачем буде більшим 30, то він буде вводити доки не буде <= 30
+        while True:
+            array = list(map(int, input('Введіть до 30 чисел через пробіл:\n').split()))
+            if len(array) <= 30:  #
+                break
 
-# отримання результатів функцій сортування
-bubble_result = bubbleSort(array1)
-selection_result = selectionSort(array2)
-insertion_result = insertionSort(array3)
+    # створюються глибокі копії основного масиву
+    array1, array2, array3 = deepcopy(array), deepcopy(array), deepcopy(array)
 
-# логічний ключ вибору користувача
-# якщо він True, то будуть виведені відсортовані масиви в напрямку зростання, та навпраки
-if choise:
-    print(f'\nВідсортований масив у напряму спадання:\n{bubble_result[0]}\n'
-          f'Відсортований масив у напряму зростання:\n{selection_result[0]}')
+    # отримання результатів функцій сортування
+    bubble_result = bubbleSort(array1)
+    selection_result = selectionSort(array2)
+    insertion_result = insertionSort(array3)
 
-print(f'\n<<<Сортування бульбашкою>>>\n'
-      f'Число порівнянь: {bubble_result[1]}\n'
-      f'Число обмінів: {bubble_result[2]}\n'
-      f'Час роботи: {timeSort(bubbleSort(array1))}')
+    # логічний ключ вибору користувача
+    # якщо він True, то будуть виведені відсортовані масиви в напрямку зростання, та навпраки
+    if choise:
+        print(f'\nВідсортований масив у напряму спадання:\n{bubble_result[0]}\n'
+              f'Відсортований масив у напряму зростання:\n{selection_result[0]}')
 
-print(f'\n<<<Сортування вибором>>>\n'
-      f'Число порівнянь: {selection_result[1]}\n'
-      f'Число обмінів: {selection_result[2]}\n'
-      f'Час роботи: {timeSort(selectionSort(array2))}')
+    print(f'\n<<<Сортування бульбашкою>>>\n'
+          f'Число порівнянь: {bubble_result[1]}\n'
+          f'Число обмінів: {bubble_result[2]}\n'
+          f'Час роботи: {timeSort(bubbleSort(array1))}')
 
-print(f'\n<<<Сортування вставками>>>\n'
-      f'Число порівнянь: {insertion_result[1]}\n'
-      f'Число обмінів: {insertion_result[2]}\n'
-      f'Час роботи: {timeSort(insertionSort(array3))}')
+    print(f'\n<<<Сортування вибором>>>\n'
+          f'Число порівнянь: {selection_result[1]}\n'
+          f'Число обмінів: {selection_result[2]}\n'
+          f'Час роботи: {timeSort(selectionSort(array2))}')
+
+    print(f'\n<<<Сортування вставками>>>\n'
+          f'Число порівнянь: {insertion_result[1]}\n'
+          f'Число обмінів: {insertion_result[2]}\n'
+          f'Час роботи: {timeSort(insertionSort(array3))}')
+
+    if input('\nEnter - continue\n'
+             'something - break\n'):
+        break
